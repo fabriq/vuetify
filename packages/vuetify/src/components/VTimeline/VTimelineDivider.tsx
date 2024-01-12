@@ -8,7 +8,7 @@ import { makeComponentProps } from '@/composables/component'
 import { makeElevationProps, useElevation } from '@/composables/elevation'
 import { IconValue } from '@/composables/icons'
 import { makeRoundedProps, useRounded } from '@/composables/rounded'
-import { makeSizeProps, useSize } from '@/composables/size'
+import { makeSizeProps, resolveSizeCompat, useSize } from '@/composables/size'
 
 // Utilities
 import { toRef } from 'vue'
@@ -86,7 +86,7 @@ export const VTimelineDivider = genericComponent()({
                   key="icon"
                   color={ props.iconColor }
                   icon={ props.icon }
-                  size={ props.size }
+                  size={ resolveSizeCompat(props) }
                 />
               ) : (
                 <VDefaultsProvider
@@ -96,7 +96,7 @@ export const VTimelineDivider = genericComponent()({
                     VIcon: {
                       color: props.iconColor,
                       icon: props.icon,
-                      size: props.size,
+                      size: resolveSizeCompat(props),
                     },
                   }}
                   v-slots:default={ slots.default }

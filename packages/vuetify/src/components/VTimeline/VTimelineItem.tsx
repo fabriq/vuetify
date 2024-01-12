@@ -7,7 +7,7 @@ import { makeDimensionProps, useDimension } from '@/composables/dimensions'
 import { makeElevationProps } from '@/composables/elevation'
 import { IconValue } from '@/composables/icons'
 import { makeRoundedProps } from '@/composables/rounded'
-import { makeSizeProps } from '@/composables/size'
+import { makeSizeProps, resolveSizeCompat } from '@/composables/size'
 import { makeTagProps } from '@/composables/tag'
 
 // Utilities
@@ -91,7 +91,7 @@ export const VTimelineItem = genericComponent<VTimelineItemSlots>()({
           hideDot={ props.hideDot }
           icon={ props.icon }
           iconColor={ props.iconColor }
-          size={ props.size }
+          size={ resolveSizeCompat(props) }
           elevation={ props.elevation }
           dotColor={ props.dotColor }
           fillDot={ props.fillDot }

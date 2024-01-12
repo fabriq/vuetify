@@ -10,7 +10,7 @@ import { makeDensityProps } from '@/composables/density'
 import { IconValue } from '@/composables/icons'
 import { useLocale } from '@/composables/locale'
 import { useProxiedModel } from '@/composables/proxiedModel'
-import { makeSizeProps } from '@/composables/size'
+import { makeSizeProps, resolveSizeCompat } from '@/composables/size'
 import { makeTagProps } from '@/composables/tag'
 import { makeThemeProps, provideTheme } from '@/composables/theme'
 
@@ -151,7 +151,7 @@ export const VRating = genericComponent<VRatingSlots>()({
         disabled: props.disabled,
         icon: itemState.value[index]?.icon,
         ripple: props.ripple,
-        size: props.size,
+        size: resolveSizeCompat(props),
         variant: 'plain' as Variant,
       }
 
