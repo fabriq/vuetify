@@ -55,7 +55,16 @@ export type VImgSlots = {
 
 export const makeVImgProps = propsFactory({
   alt: String,
-  cover: Boolean,
+  cover: {
+    type: Boolean,
+    /** @compat */
+    default: undefined,
+  },
+  /** @compat */
+  contain: {
+    type: Boolean,
+    default: undefined,
+  },
   color: String,
   draggable: {
     type: [Boolean, String] as PropType<boolean | 'true' | 'false'>,
@@ -98,6 +107,31 @@ export const makeVImgProps = propsFactory({
   ...makeRoundedProps(),
   ...makeTransitionProps(),
 }, 'VImg')
+
+/**
+ * @compat props.cover
+ */
+function resolveCoverCompat (props: { cover?: boolean, contain?: boolean }): boolean | undefined {
+  if (props.cover != null) {
+    if (props.contain != null) {
+      console.error(
+        '[Vuetify/compat] The props "cover" and "contain" are mutually exclusive.' +
+        'Please use only one of them (cover takes precedence).'
+      )
+    }
+    return props.cover
+  }
+  if (props.contain != null) {
+    console.warn('[Vuetify/compat] The prop "contain" has been deprecated. Use "cover" instead (the values are inverted).')
+    return !props.contain
+  }
+  console.warn(
+    '[Vuetify/compat] The default behavior of VImg has changed in Vuetify 3.' +
+    'It behaves like \':cover="false"\' by default.' +
+    'Please specify \'cover\' before switching to the non-compat Vuetify 3 or \':cover="false"\' to silence this warning.'
+  )
+  return true
+}
 
 export const VImg = genericComponent<VImgSlots>()({
   name: 'VImg',
@@ -243,10 +277,13 @@ export const VImg = genericComponent<VImgSlots>()({
       poll()
     }
 
-    const containClasses = computed(() => ({
-      'v-img__img--cover': props.cover,
-      'v-img__img--contain': !props.cover,
-    }))
+    const containClasses = computed(() => {
+      const cover = resolveCoverCompat(props)
+      return {
+        'v-img__img--cover': cover,
+        'v-img__img--contain': !cover,
+      }
+    })
 
     const __image = () => {
       if (!normalisedSrc.value.src || state.value === 'idle') return null
