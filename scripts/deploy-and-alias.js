@@ -1,7 +1,7 @@
 const shell = require('shelljs')
 
 const alias = {
-  'refs/heads/master': 'vuetifyjs.com',
+  'refs/heads/main': 'vuetifyjs.com',
   'refs/heads/dev': 'dev.vuetifyjs.com',
   'refs/heads/next': 'next.vuetifyjs.com',
 }[process.argv[2]]

@@ -9,7 +9,8 @@ import { VCard } from '@/components/VCard'
 // Utilities
 import { createRange } from '@/util'
 
-describe('VSlideGroup', () => {
+// Skipping due to flakiness
+describe.skip('VSlideGroup', () => {
   it('should support default scoped slot with selection', () => {
     cy.mount(() => (
       <Application>

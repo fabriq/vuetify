@@ -16,9 +16,9 @@ export function copyElementContent (el: HTMLElement) {
 export function getBranch () {
   const branch = IN_BROWSER
     ? window.location.hostname.split('.')[0]
-    : 'master'
+    : 'main'
 
-  return ['master', 'dev', 'next'].includes(branch) ? branch : 'master'
+  return ['main', 'dev', 'next'].includes(branch) ? branch : 'main'
 }
 
 export const wait = (timeout: number) => {

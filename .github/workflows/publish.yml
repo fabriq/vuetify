@@ -1,0 +1,52 @@
+name: Publish
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'fabriq' }}
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: ./.github/actions/yarn-install
+      - run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+        shell: bash
+      - run: >-
+          node -e "
+            const json = require('./lerna.json');
+            delete json.command.publish.allowBranch;
+            fs.writeFileSync('./lerna.json', JSON.stringify(json, null, 2))"
+        shell: bash
+      - id: get-version
+        run: echo "version=$(node -e "console.log(require('./lerna.json').version)")" >> $GITHUB_OUTPUT
+        shell: bash
+      - run: yarn lerna version ${{ steps.get-version.outputs.version }} --no-push --no-commit-hooks --force-publish --yes
+        shell: bash
+      - run: yarn lerna run build --scope vuetify
+        shell: bash
+      - run: yarn lerna run build --scope @vuetify/api-generator
+        shell: bash
+      - run: >-
+          node -e "fs.writeFileSync(
+            './package.json',
+            JSON.stringify({ ...require('./package.json'), name: '@fabriq/vuetify-compat' }, null, 2)
+          )"
+        shell: bash
+        working-directory: ./packages/vuetify
+      - name: Publish package
+        run: |
+          echo "@fabriq:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+          cd packages/vuetify
+          npm publish
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -6,7 +6,7 @@
   "version": "3.5.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuetifyjs/vuetify.git",
+    "url": "git+https://github.com/fabriq/vuetify.git",
     "directory": "packages/docs"
   },
   "scripts": {

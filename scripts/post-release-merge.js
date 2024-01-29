@@ -12,15 +12,15 @@ function exec (command) {
   return result.stdout.trim()
 }
 
-if (branch === 'master') {
+if (branch === 'main') {
   shell.exec('git checkout dev')
   branch = 'dev'
   shell.exec('git pull --ff-only')
-  shell.exec('git merge master')
+  shell.exec('git merge main')
 
   if (exec('git status --porcelain') === '') {
     shell.exec('git push --no-verify')
-    shell.exec('git checkout master')
+    shell.exec('git checkout main')
   } else {
     shell.echo('Please resolve conflicts then push the current branch')
   }
