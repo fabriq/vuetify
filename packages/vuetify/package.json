@@ -1,5 +1,6 @@
 {
-  "name": "vuetify",
+  "name": "@fabriq/vuetify-compat",
+  "private": true,
   "description": "Vue Material Component Framework",
   "version": "3.5.1",
   "author": {

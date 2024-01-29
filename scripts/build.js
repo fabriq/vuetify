@@ -4,7 +4,8 @@ let target = process.argv[2]
 const alias = {
   api: '@vuetify/api-generator',
   docs: 'vuetifyjs.com',
-  dev: 'vuetify',
+  dev: '@fabriq/vuetify-compat',
+  vuetify: '@fabriq/vuetify-compat',
 }
 target = alias[target] || target
 
