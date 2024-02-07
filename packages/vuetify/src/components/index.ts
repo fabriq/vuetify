@@ -91,3 +91,6 @@ export * from './VValidation'
 export * from './VVirtualScroll'
 export * from './VWindow'
 export * from './transitions'
+
+// Re-exporting the labs so we don't have to change the imports in webapp
+export * from '../labs/components'
