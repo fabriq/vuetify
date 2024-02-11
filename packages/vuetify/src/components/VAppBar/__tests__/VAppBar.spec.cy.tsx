@@ -35,7 +35,7 @@ describe('VAppBar', () => {
       .setProps({ density: 'prominent' })
       .get('.v-app-bar').should('have.css', 'height', '128px')
       .setProps({ density: 'comfortable' })
-      .get('.v-app-bar').should('have.css', 'height', '56px')
+      .get('.v-app-bar').should('have.css', 'height', '48px')
       .setProps({ density: 'compact' })
       .get('.v-app-bar').should('have.css', 'height', '48px')
   })

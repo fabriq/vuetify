@@ -22,7 +22,7 @@ describe('VBottomNavigation', () => {
       </VLayout>
     ))
 
-    cy.get('.v-bottom-navigation').should('have.css', 'height', '56px')
+    cy.get('.v-bottom-navigation').should('have.css', 'height', '48px')
       .setProps({ density: 'comfortable' })
       .get('.v-bottom-navigation').should('have.css', 'height', '48px')
       .setProps({ density: 'compact' })

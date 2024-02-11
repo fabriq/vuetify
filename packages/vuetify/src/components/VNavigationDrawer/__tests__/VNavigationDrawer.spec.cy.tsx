@@ -35,11 +35,11 @@ describe('VNavigationDrawer', () => {
     ))
 
     cy.setProps({ rail: true, expandOnHover: true })
-      .get('.v-navigation-drawer').should('have.css', 'width', '56px')
+      .get('.v-navigation-drawer').should('have.css', 'width', '48px')
       .get('.v-navigation-drawer').trigger('mouseenter')
       .get('.v-navigation-drawer').should('have.css', 'width', '256px')
       .get('.v-navigation-drawer').trigger('mouseleave')
-      .get('.v-navigation-drawer').should('have.css', 'width', '56px')
+      .get('.v-navigation-drawer').should('have.css', 'width', '48px')
   })
 
   it('should change width when using bound and unbound rail and expandOnHover', () => {
@@ -53,14 +53,14 @@ describe('VNavigationDrawer', () => {
       </VLayout>
     ))
 
-    cy.get('.v-navigation-drawer').should('have.css', 'width', '56px')
-      .get('.v-main').should('have.css', 'padding-left', '56px')
+    cy.get('.v-navigation-drawer').should('have.css', 'width', '48px')
+      .get('.v-main').should('have.css', 'padding-left', '48px')
       .get('.v-navigation-drawer').trigger('mouseenter')
       .get('.v-navigation-drawer').should('have.css', 'width', '256px')
       .get('.v-main').should('have.css', 'padding-left', '256px')
       .get('.v-navigation-drawer').trigger('mouseleave')
-      .get('.v-navigation-drawer').should('have.css', 'width', '56px')
-      .get('.v-main').should('have.css', 'padding-left', '56px')
+      .get('.v-navigation-drawer').should('have.css', 'width', '48px')
+      .get('.v-main').should('have.css', 'padding-left', '48px')
   })
 
   it('should hide drawer if window resizes below mobile breakpoint', () => {
