@@ -26,7 +26,7 @@ $button-disabled-overlay: 0.12 !default;
 $button-elevation: ('default': 2, 'hover': 4, 'active': 8) !default;
 $button-font-size: tools.map-deep-get(settings.$typography, 'button', 'size') !default;
 $button-font-weight: tools.map-deep-get(settings.$typography, 'button', 'weight') !default;
-$button-height: 36px !default;
+$button-height: 24px !default;
 $button-stacked-height: 72px !default;
 $button-stacked-icon-margin: 4px !default;
 $button-icon-border-radius: map.get(settings.$rounded, 'circle') !default;
